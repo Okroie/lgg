@@ -1,0 +1,29 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">-->
+<!--    <title>赵帅的博客</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Start</h1>-->
+<!--<h2>123</h2>-->
+<!--</body>-->
+<!--</html>-->
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 style="font-size:3em; color:cyan">{% block title %} Welcome to Mr Zhao's blog {% endblock %}</h1>
+{% for post in posts %}
+<a href="{{url_for('post', post_id=post['id'])}}">
+    <h2 style="color:black; font-family:Roman; font-size:3em">{{ post['title'] }}</h2>
+</a>
+<span class="badge badge-primary" style="color:gold;">{{ post['created'] }}</span>
+<a href="{{ url_for('edit', post_id=post['id']) }}">
+    <span class="badge badge-warning" style="color:white">编辑</span>
+</a>
+{% endfor %}
+
+{% endblock %}
